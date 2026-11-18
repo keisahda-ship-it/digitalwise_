@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Anton&family=Poppins:wght@500;600;700;800&family=Zilla+Slab:wght@700&family=Abril+Fatface&family=Baloo+2:wght@800&family=Archivo:wght@800&display=swap"><style>body{margin:0;background:#fcf9ec}a{color:#1b3350}a:hover{color:#0f2259}*{box-sizing:border-box}</style></helmet>
+<div style="min-height:100vh;background:{{ t.page }};color:{{ t.ink }};font:500 17px/1.45 Poppins,sans-serif;padding-bottom:140px">
+<div style="height:28px;background:repeating-conic-gradient({{ t.ink }} 0 25%,{{ t.page }} 0 50%) 0 0/28px 28px"></div>
+
+<header style="max-width:1180px;margin:0 auto;padding:18px 24px 0;display:flex;flex-wrap:wrap;align-items:center;gap:12px 20px">
+<button onClick="{{ goHome }}" style="border:none;background:none;padding:0;cursor:pointer;color:{{ t.ink }};font:400 34px/1 Anton,sans-serif;text-transform:uppercase">Digital Wise</button>
+<nav style="display:flex;flex-wrap:wrap;gap:8px;flex:1 1 420px">
+<button onClick="{{ goHome }}" style="border:2px solid {{ t.ink }};border-radius:999px;min-height:46px;padding:0 18px;cursor:pointer;font:600 16px Poppins,sans-serif;background:{{ homeBg }};color:{{ homeInk }}">Beranda</button>
+<sc-for list="{{ brands }}" as="b" hint-placeholder-count="5">
+<button onClick="{{ b.go }}" style="display:flex;align-items:center;gap:8px;border:2px solid {{ t.ink }};border-radius:999px;min-height:46px;padding:0 16px 0 6px;cursor:pointer;font:600 16px Poppins,sans-serif;background:{{ b.navBg }};color:{{ b.navInk }}"><span role="img" style="width:32px;height:32px;flex:none;border-radius:50%;background:#fff url({{ b.logo }}) center/cover no-repeat"></span><span>{{ b.name }}</span></button>
+</sc-for>
+</nav>
+</header>
+
+<div style="max-width:1180px;margin:0 auto;padding:18px 24px 0">
+<input value="{{ q }}" onChange="{{ onQ }}" placeholder="Cari layanan — mis. SPSS, poster, terjemahan, simulasi sidang" style="width:100%;min-height:56px;padding:0 20px;border:2px solid {{ t.ink }};border-radius:14px;background:#fff;color:{{ t.ink }};font:500 17px Poppins,sans-serif;outline:none">
+</div>
+
+<sc-if value="{{ showHome }}" hint-placeholder-val="{{ true }}">
+<main style="max-width:1180px;margin:0 auto;padding:28px 24px 0">
+<h1 style="margin:0;font:400 clamp(72px,14vw,176px)/0.92 Anton,sans-serif;text-transform:uppercase">Digital Wise</h1>
+<div style="display:flex;flex-wrap:wrap;justify-content:space-between;gap:8px 24px;margin-top:14px;padding-bottom:22px;border-bottom:2px solid {{ t.ink }};font-weight:600;font-size:20px"><span>Pricing guide — bimbingan, desain, olah data &amp; bahasa</span><span>Monday – Sunday · 24 HOURS</span></div>
+
+<section style="margin-top:28px;background:#16324f;color:#fcf9ec;border-radius:22px;padding:32px;display:flex;flex-wrap:wrap;gap:28px;align-items:center">
+<img src="logos/studiwise.png" alt="Logo Studiwise" style="width:190px;height:190px;border-radius:50%;object-fit:cover;background:#fff;flex:none">
+<div style="flex:1 1 320px;min-width:0">
+<span style="display:inline-block;background:#c9a23a;color:#16324f;font-weight:700;font-size:14px;letter-spacing:.08em;padding:5px 12px;border-radius:999px">UTAMA</span>
+<div style="font:400 clamp(52px,8vw,84px)/1 Anton,sans-serif;text-transform:uppercase;margin-top:10px">Studiwise</div>
+<div style="font-weight:600;font-size:20px;color:#e3c66a">Study smart, graduate faster</div>
+<p style="margin:10px 0 0;max-width:560px">Bimbingan riset, persiapan seminar &amp; sidang, les &amp; tutor, format tata tulis, terjemahan dan proofreading. Kontak utama untuk semua layanan Digital Wise.</p>
+<div style="display:flex;flex-wrap:wrap;gap:12px;margin-top:20px;align-items:center">
+<button onClick="{{ goStudi }}" style="border:none;border-radius:999px;min-height:52px;padding:0 26px;cursor:pointer;background:#c9a23a;color:#16324f;font:700 17px Poppins,sans-serif">Lihat pricelist</button>
+<a href="https://wa.me/6285817137326" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;min-height:52px;padding:0 24px;border:2px solid #fcf9ec;border-radius:999px;color:#fcf9ec;text-decoration:none;font-weight:600">WhatsApp +62 858-1713-7326</a>
+</div>
+</div>
+</section>
+
+<section style="display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:18px;margin-top:18px">
+<sc-for list="{{ others }}" as="b" hint-placeholder-count="4">
+<div style="border-radius:22px;padding:22px;display:flex;flex-direction:column;gap:12px;background:{{ b.bg }};color:{{ b.ink }}">
+<div role="img" style="width:100%;aspect-ratio:16/10;border-radius:14px;background:#fff url({{ b.logo }}) center/cover no-repeat"></div>
+<div style="font:400 44px/1 Anton,sans-serif;text-transform:uppercase">{{ b.name }}</div>
+<div style="font-weight:600;flex:1">{{ b.tagline }}</div>
+<div style="font-size:16px;display:flex;flex-wrap:wrap;gap:2px 12px"><span>{{ b.countText }}</span><span style="white-space:nowrap">{{ b.phone }}</span></div>
+<div style="display:flex;flex-wrap:wrap;gap:10px">
+<button onClick="{{ b.go }}" style="border:none;border-radius:999px;min-height:48px;padding:0 22px;cursor:pointer;font:700 16px Poppins,sans-serif;background:{{ b.btnBg }};color:{{ b.btnInk }}">Lihat pricelist</button>
+<a href="{{ b.wa }}" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;min-height:48px;padding:0 18px;border-radius:999px;text-decoration:none;font-weight:600;font-size:16px;border:2px solid {{ b.ink }};color:{{ b.ink }}">WhatsApp</a>
+</div>
+</div>
+</sc-for>
+</section>
+
+<section style="margin-top:32px;padding-top:24px;border-top:2px solid {{ t.ink }};display:grid;gap:8px">
+<h2 style="margin:0 0 4px;font:600 24px/1.2 Poppins,sans-serif">Ketentuan</h2>
+<div>Naskah, data, dan materi berasal dari klien — kami membimbing, mengolah, mendesain, dan menyunting.</div>
+<div>Harga dapat menyesuaikan tingkat kesulitan dan tenggat waktu.</div>
+<div>Pilih beberapa layanan di pricelist untuk melihat estimasi, lalu kirim lewat WhatsApp.</div>
+</section>
+</main>
+</sc-if>
+
+<sc-if value="{{ showList }}" hint-placeholder-val="{{ false }}">
+<main style="max-width:1180px;margin:0 auto;padding:22px 24px 0">
+<sc-if value="{{ isBrand }}" hint-placeholder-val="{{ false }}">
+<section style="border-radius:22px;padding:26px;display:flex;flex-wrap:wrap;gap:24px;align-items:center;background:{{ cur.bg }};color:{{ cur.ink }}">
+<div role="img" style="width:150px;height:150px;flex:none;border-radius:20px;background:#fff url({{ cur.logo }}) center/cover no-repeat"></div>
+<div style="flex:1 1 300px;min-width:0">
+<div style="font-family:{{ t.font }};font-weight:{{ t.fw }};font-size:clamp(48px,8vw,84px);line-height:1;text-transform:{{ t.tt }}">{{ cur.name }}</div>
+<div style="font-weight:600;font-size:20px;margin-top:4px">{{ cur.tagline }}</div>
+<div style="margin-top:4px">{{ cur.countText }} · Monday – Sunday, 24 HOURS</div>
+</div>
+<a href="{{ cur.wa }}" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;min-height:54px;padding:0 26px;border-radius:999px;text-decoration:none;font-weight:700;gap:7px;white-space:nowrap;background:{{ cur.btnBg }};color:{{ cur.btnInk }}"><span>WhatsApp</span><span>{{ cur.phone }}</span></a>
+</section>
+<div style="display:flex;flex-wrap:wrap;gap:8px;margin-top:18px">
+<sc-for list="{{ cats }}" as="c" hint-placeholder-count="5">
+<button onClick="{{ c.pick }}" style="border:2px solid {{ t.ink }};border-radius:999px;min-height:44px;padding:0 16px;cursor:pointer;font:600 15px Poppins,sans-serif;background:{{ c.bg }};color:{{ c.ink }}">{{ c.name }}</button>
+</sc-for>
+</div>
+</sc-if>
+
+<sc-if value="{{ empty }}" hint-placeholder-val="{{ false }}">
+<div style="margin-top:32px;font-weight:600;font-size:20px">Tidak ada layanan yang cocok. Coba kata kunci lain atau tanya langsung via WhatsApp.</div>
+</sc-if>
+
+<sc-for list="{{ groups }}" as="g" hint-placeholder-count="3">
+<section style="margin-top:30px">
+<h2 style="margin:0 0 6px;padding-bottom:10px;border-bottom:2px solid {{ t.ink }};font:600 24px/1.2 Poppins,sans-serif;display:flex;justify-content:space-between;gap:12px;align-items:baseline"><span>{{ g.title }}</span><span style="font-size:15px;font-weight:500">{{ g.countText }}</span></h2>
+<sc-for list="{{ g.items }}" as="it" hint-placeholder-count="5">
+<div style="display:flex;flex-wrap:wrap;align-items:center;gap:8px 16px;padding:10px 12px;border-bottom:1px solid {{ t.hair }};border-radius:10px;background:{{ it.rowBg }}">
+<span style="flex:1 1 240px;font-weight:600;font-size:17px">{{ it.name }}</span>
+<span style="font-weight:700;font-size:18px;white-space:nowrap">{{ it.priceText }}</span>
+<button onClick="{{ it.toggle }}" style="border:2px solid {{ t.ink }};border-radius:999px;min-height:44px;min-width:104px;padding:0 16px;cursor:pointer;font:600 15px Poppins,sans-serif;background:{{ it.btnBg }};color:{{ it.btnInk }}">{{ it.btnText }}</button>
+</div>
+</sc-for>
+</section>
+</sc-for>
+</main>
+</sc-if>
+
+<sc-if value="{{ hasCart }}" hint-placeholder-val="{{ false }}">
+<div style="position:fixed;left:0;right:0;bottom:0;background:{{ t.ink }};color:{{ t.page }};padding:14px 24px;box-shadow:0 -6px 24px rgba(0,0,0,.18)">
+<div style="max-width:1180px;margin:0 auto;display:flex;flex-wrap:wrap;align-items:center;gap:10px 20px">
+<div style="flex:1 1 260px"><div style="font-weight:700;font-size:20px">{{ cartTotal }}</div><div style="font-size:15px">{{ cartInfo }}</div></div>
+<button onClick="{{ clearCart }}" style="border:2px solid {{ t.page }};border-radius:999px;min-height:48px;padding:0 20px;cursor:pointer;background:none;color:{{ t.page }};font:600 16px Poppins,sans-serif">Hapus pilihan</button>
+<a href="{{ cartWa }}" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;min-height:48px;padding:0 24px;border-radius:999px;background:{{ t.accent }};color:{{ t.accentInk }};text-decoration:none;font-weight:700">{{ cartCta }}</a>
+</div>
+</div>
+</sc-if>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;startView&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;home&quot;,&quot;studiwise&quot;,&quot;designwise&quot;,&quot;datawise&quot;,&quot;sainswise&quot;,&quot;stetos&quot;],&quot;default&quot;:&quot;home&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;enableCart&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;}}">
+class Component extends DCLogic {
+  state = { view: null, q: '', cat: 'Semua', cart: {} };
+  data() {
+    if (this._d) return this._d;
+    const B = (id, name, tagline, phone, logo, bg, ink, btnBg, btnInk, cats) => ({ id, name, tagline, phone: '+62 ' + phone, wa: 'https://wa.me/62' + phone.replace(/\D/g, ''), logo: 'logos/' + logo, bg, ink, btnBg, btnInk, cats });
+    return this._d = [
+      B('studiwise', 'Studiwise', 'Bimbingan riset, sidang, tutor & bahasa', '858-1713-7326', 'studiwise.png', '#16324f', '#fcf9ec', '#c9a23a', '#16324f', [
+        ['Bimbingan Riset', [['Konsultasi judul & topik penelitian (1 sesi)', 75], ['Konsultasi rumusan masalah & latar belakang', 75], ['Konsultasi kerangka berpikir & hipotesis', 75], ['Konsultasi metodologi (kuantitatif / kualitatif / mixed)', 100], ['Bimbingan menyusun tinjauan pustaka (1 sesi)', 100], ['Bimbingan mapping penelitian terdahulu', 100], ['Pendampingan pencarian jurnal & referensi', 60], ['Review draf proposal + catatan perbaikan', 150], ['Review draf per bab + catatan perbaikan', 100], ['Review naskah skripsi lengkap + catatan', 400], ['Review naskah tesis lengkap + catatan', 600], ['Paket bimbingan rutin (4 sesi / bulan)', 400]]],
+        ['Seminar & Sidang', [['Konsultasi persiapan sidang (1 sesi)', 125], ['Simulasi tanya jawab sempro', 100], ['Simulasi tanya jawab semhas / sidang akhir', 150], ['Latihan presentasi + feedback', 100], ['Review PPT & alur presentasi', 60], ['Paket persiapan sidang (konsultasi + simulasi + latihan)', 300]]],
+        ['Publikasi', [['Konsultasi pemilihan jurnal (SINTA / Scopus)', 100], ['Pendampingan konversi skripsi → artikel', 150], ['Pendampingan konversi tesis → artikel', 300], ['Review artikel sebelum submit', 200], ['Pendampingan menjawab catatan reviewer', 200], ['Penyesuaian template jurnal', 100]]],
+        ['Les & Tutor', [['Les privat per topik (60 menit)', 75], ['Paket les 4 sesi', 270], ['Paket les 8 sesi', 500], ['Belajar bareng persiapan UTS / UAS (60 menit)', 75], ['Tutor modul Universitas Terbuka (60 menit)', 75], ['Pelatihan menulis akademik & sitasi', 100], ['Pelatihan Mendeley / Zotero', 75]]],
+        ['Format & Tata Tulis', [['Cek format & tata tulis (per dokumen)', 50], ['Daftar isi + daftar tabel + gambar otomatis', 80], ['Merapikan daftar pustaka (APA, IEEE, dll)', 80], ['Layout cover + halaman pengesahan', 30], ['Penomoran halaman & margin', 40], ['Cek similarity Turnitin (per file)', 25]]],
+        ['Terjemahan', [['Indo → Inggris', 50, '/hal'], ['Inggris → Indo', 35, '/hal'], ['Indo → Arab / Arab → Indo', 60, '/hal'], ['Terjemahan abstrak (Indo + Inggris)', 75], ['Terjemahan jurnal / artikel penuh', 200], ['Terjemahan dokumen resmi / legal', 100, '/hal']]],
+        ['Proofreading', [['Proofreading bahasa Indonesia', 15, '/hal'], ['Proofreading bahasa Inggris', 20, '/hal'], ['Editing bahasa Inggris akademik', 25, '/hal'], ['Proofreading skripsi / tesis full', 300]]]
+      ]),
+      B('designwise', 'Designwise', 'Driven by quality — khusus desain', '851-3607-6534', 'designwise.png', '#6e2c3e', '#ffd6d2', '#ffd6d2', '#6e2c3e', [
+        ['PPT & Presentasi', [['PPT biasa', 5, '/slide'], ['PPT desain standar', 8, '/slide'], ['PPT premium / estetik', 12, '/slide'], ['PPT animasi', 15, '/slide'], ['PPT paket 10 slide', 75], ['PPT paket 20 slide', 140], ['PPT paket 30 slide', 200], ['Redesain PPT yang sudah ada', 50], ['Konversi Word → PPT', 60], ['Template PPT custom (master slide)', 100]]],
+        ['Desain Akademik', [['Infografis akademik', 75], ['Poster ilmiah / penelitian', 75], ['Poster seminar / konferensi', 100], ['Banner akademik (digital)', 50], ['Banner akademik (cetak / print)', 75], ['Kerangka berpikir / konseptual (visual)', 60], ['Diagram alur / flowchart', 60], ['Cover skripsi / tesis / buku', 60], ['Cover makalah / laporan', 30]]],
+        ['Konten Sosial & Event', [['Feed Instagram (per konten)', 15], ['Feed Instagram (paket 10 konten)', 120], ['Story Instagram', 10], ['Highlight cover Instagram (5 ikon)', 40], ['Twibbon', 30], ['Flyer kegiatan', 35], ['Undangan digital', 35], ['Sertifikat', 25], ['ID Card / badge peserta', 25], ['Kartu nama', 30], ['Thumbnail YouTube', 20], ['Pamflet / brosur', 40], ['Banner / spanduk event', 60], ['Booklet / modul (layout)', 10, '/hal'], ['Desain kaos / merchandise sederhana', 50]]],
+        ['Logo & Branding', [['Logo organisasi / komunitas', 100], ['Logo usaha / brand', 150], ['Paket logo + kartu nama', 175], ['Paket branding lengkap (logo + feed + highlight)', 300]]],
+        ['Karier & Lainnya', [['CV ATS-friendly', 40], ['CV kreatif', 50], ['Portofolio (layout)', 15, '/hal'], ['Banner LinkedIn', 25], ['Mockup produk', 30]]]
+      ]),
+      B('datawise', 'Datawise', 'Olah data kuanti / kualitatif — saintek', '895-2851-3172', 'datawise.png', '#111111', '#f7f5ef', '#ff4326', '#111111', [
+        ['SPSS', [['Statistik deskriptif', 45], ['Uji validitas & reliabilitas', 45], ['Uji normalitas', 45], ['Uji homogenitas', 45], ['Uji asumsi klasik (lengkap)', 150], ['Uji regresi linear sederhana', 45], ['Uji regresi linear berganda', 45], ['Uji regresi logistik', 100], ['Uji korelasi Pearson / Spearman', 45], ['Uji chi-square', 45], ['Uji T (independent / paired)', 45], ['Uji F / ANOVA', 45], ['Uji Mann-Whitney / Wilcoxon', 45], ['Uji Kruskal-Wallis', 45], ['Uji mediasi / moderasi', 100], ['SPSS Paket Lengkap (semua uji)', 350]]],
+        ['SmartPLS / SEM', [['Outer model (loading factor, AVE, CR)', 100], ['Inner model (path coefficient, R², Q²)', 100], ['SmartPLS Paket Lengkap', 350], ['SEM-AMOS', 400], ['CFA (Confirmatory Factor Analysis)', 150], ['EFA (Exploratory Factor Analysis)', 150], ['Analisis jalur (path analysis)', 150]]],
+        ['Kualitatif', [['Olah data kualitatif (coding)', 150], ['NVivo (analisis kualitatif)', 250], ['Analisis konten', 150], ['Analisis wacana', 150], ['Transkrip wawancara (per 30 menit audio)', 50]]],
+        ['Excel & Lainnya', [['Olah data Excel / pivot', 75], ['Tabulasi data kuesioner (per 100 responden)', 50], ['Perhitungan sampel (Slovin, dll)', 70], ['Visualisasi data / grafik', 50], ['Dashboard Excel', 150], ['Data panel EViews / Stata', 250]]],
+        ['Pendampingan Saintek', [['Sesi penjelasan output statistik (60 menit)', 75], ['Les statistik (60 menit)', 100], ['Les pemrograman Python / R (60 menit)', 100], ['Tutor teknik / informatika (60 menit)', 100], ['Review diagram sistem (ERD, DFD, use case)', 75]]]
+      ]),
+      B('sainswise', 'Sainswise', 'Social sciences & humanities — soshum', '896-7479-4520', 'sainswise.jpeg', '#0c3f8f', '#ffffff', '#fbbd23', '#0c3f8f', [
+        ['Tutor Soshum (60 menit)', [['Ekonomi, manajemen & akuntansi', 75], ['Hukum', 75], ['Pendidikan, PGSD & PAUD', 75], ['Komunikasi & FISIP', 75], ['Psikologi', 75], ['Agama & studi Islam', 75], ['Sastra & bahasa', 75], ['Paket tutor 4 sesi', 270]]],
+        ['Kelas Singkat', [['Kelas analisis studi kasus (SWOT, PESTEL, Porter)', 100], ['Kelas membaca laporan keuangan', 100], ['Kelas menulis essay & opini', 100], ['Kelas critical review jurnal', 100]]],
+        ['Review & Masukan', [['Review essay / makalah + catatan perbaikan', 50], ['Review analisis SWOT / PESTEL', 60], ['Review business plan / proposal kegiatan', 100], ['Review analisis yuridis / legal memo', 100], ['Review RPP / modul ajar', 60], ['Review naskah berita / press release', 50]]],
+        ['Riset Kualitatif', [['Konsultasi desain riset kualitatif', 100], ['Review kuesioner / angket', 75], ['Review panduan wawancara', 60], ['Transkrip wawancara (per 30 menit audio)', 50]]]
+      ]),
+      B('stetos', 'Stetos', 'Kedokteran, keperawatan & kebidanan', '851-4844-0834', 'stetos.png', '#c62a08', '#f4f2ec', '#f4f2ec', '#c62a08', [
+        ['Bimbingan & Tutor', [['Tutor blok / materi preklinik (60 menit)', 125], ['Tutor keterampilan klinis / OSCE (60 menit)', 150], ['Belajar bareng persiapan UKMPPD / UKOM (60 menit)', 150], ['Tutor keperawatan / kebidanan (60 menit)', 100], ['Tutor farmasi (60 menit)', 100], ['Bimbingan critical appraisal jurnal', 150], ['Latihan presentasi kasus + feedback', 150], ['Paket tutor 4 sesi', 450]]],
+        ['Review & Masukan', [['Review draf case report + catatan perbaikan', 150], ['Review draf referat + catatan perbaikan', 150], ['Review draf askep / askeb + catatan', 100], ['Review laporan pendahuluan + catatan', 75]]],
+        ['Data & Biostatistik', [['Konsultasi biostatistik (1 sesi)', 150], ['Perhitungan besar sampel penelitian kesehatan', 75], ['Olah data penelitian kesehatan (SPSS)', 150, '', 'mulai ']]],
+        ['Desain & Bahasa Medis', [['Poster ilmiah medis', 100], ['Poster penyuluhan kesehatan', 75], ['Leaflet penyuluhan', 50], ['Desain PPT presentasi kasus', 12, '/slide'], ['Bagan pathway / patofisiologi (visual)', 100], ['Terjemahan jurnal medis', 60, '/hal']]]
+      ])
+    ];
+  }
+  rp(n) { return 'Rp ' + String(n).replace(/\B(?=(\d{3})+(?!\d))/g, '.'); }
+  renderVals() {
+    const D = this.data(), s = this.state;
+    const view = s.view ?? this.props.startView ?? 'home';
+    const cartOn = this.props.enableCart ?? true;
+    const q = s.q.trim().toLowerCase();
+    const T = ({
+      studiwise: { page: '#f8f5ea', ink: '#16324f', accent: '#c9a23a', accentInk: '#16324f', sel: 'rgba(201,162,58,.25)', hair: 'rgba(22,50,79,.2)', font: "'Zilla Slab',serif", fw: 700, tt: 'uppercase' },
+      designwise: { page: '#ffd6d2', ink: '#6e2c3e', accent: '#ffd6d2', accentInk: '#6e2c3e', sel: 'rgba(205,131,145,.4)', hair: 'rgba(110,44,62,.25)', font: "'Abril Fatface',serif", fw: 400, tt: 'none' },
+      datawise: { page: '#f7f5ef', ink: '#111111', accent: '#ff4326', accentInk: '#111111', sel: 'rgba(255,67,38,.18)', hair: 'rgba(0,0,0,.18)', font: "'Baloo 2',sans-serif", fw: 800, tt: 'none' },
+      sainswise: { page: '#ffffff', ink: '#0c3f8f', accent: '#fbbd23', accentInk: '#0c3f8f', sel: 'rgba(251,189,35,.3)', hair: 'rgba(12,63,143,.2)', font: 'Poppins,sans-serif', fw: 800, tt: 'uppercase' },
+      stetos: { page: '#e4e3dd', ink: '#c62a08', accent: '#f4f2ec', accentInk: '#c62a08', sel: 'rgba(198,42,8,.13)', hair: 'rgba(198,42,8,.28)', font: 'Archivo,sans-serif', fw: 800, tt: 'uppercase' }
+    })[view] || { page: '#fcf9ec', ink: '#1b3350', accent: '#c9a23a', accentInk: '#16324f', sel: 'rgba(201,162,58,.22)', hair: 'rgba(27,51,80,.18)', font: 'Anton,sans-serif', fw: 400, tt: 'uppercase' };
+    const go = id => () => { this.setState({ view: id, cat: 'Semua' }); window.scrollTo(0, 0); };
+    const all = [];
+    D.forEach(b => b.cats.forEach(([cat, rows]) => rows.forEach(([name, k, suf, pre], i) => {
+      const id = b.id + '|' + cat + '|' + i, price = k * 1000, on = !!s.cart[id];
+      all.push({ id, b, cat, name, price, on, priceText: (pre || '') + this.rp(price) + (suf || ''),
+        rowBg: on ? T.sel : 'transparent', btnBg: on ? T.ink : 'transparent', btnInk: on ? T.page : T.ink,
+        btnText: cartOn ? (on ? '✓ Dipilih' : 'Pilih') : 'Tanya',
+        toggle: cartOn ? () => this.setState(st => ({ cart: { ...st.cart, [id]: !st.cart[id] } })) : () => window.open(b.wa + '?text=' + encodeURIComponent('Halo ' + b.name + ', saya mau tanya layanan: ' + name), '_blank') });
+    })));
+    const brands = D.map(b => ({ ...b, countText: b.cats.reduce((n, c) => n + c[1].length, 0) + ' layanan', go: go(b.id), navBg: view === b.id ? T.ink : 'transparent', navInk: view === b.id ? T.page : T.ink }));
+    const cur = brands.find(b => b.id === view);
+    const list = all.filter(it => (!cur || it.b.id === view) && (!cur || s.cat === 'Semua' || it.cat === s.cat) && (!q || (it.name + ' ' + it.cat + ' ' + it.b.name).toLowerCase().includes(q)));
+    const groups = [];
+    list.forEach(it => { const key = it.b.id + it.cat; let g = groups.find(x => x.key === key); if (!g) groups.push(g = { key, title: (cur ? '' : it.b.name + ' · ') + it.cat, items: [] }); g.items.push(it); });
+    groups.forEach(g => g.countText = g.items.length + ' layanan');
+    const sel = all.filter(it => it.on), bs = [...new Set(sel.map(it => it.b.id))];
+    const target = bs.length === 1 ? sel[0].b : D[0];
+    const total = sel.reduce((n, it) => n + it.price, 0);
+    const msg = 'Halo ' + target.name + ', saya mau tanya layanan berikut:\n' + sel.map(it => '• ' + it.b.name + ' — ' + it.name + ' (' + it.priceText + ')').join('\n') + '\nEstimasi: ' + this.rp(total);
+    const showHome = !cur && !q;
+    return {
+      q: s.q, onQ: e => this.setState({ q: e.target.value }),
+      goHome: () => { this.setState({ view: 'home', q: '', cat: 'Semua' }); window.scrollTo(0, 0); }, goStudi: go('studiwise'),
+      t: T, homeBg: cur ? 'transparent' : T.ink, homeInk: cur ? T.ink : T.page,
+      brands, others: brands.slice(1), cur: cur || brands[0], isBrand: !!cur, showHome, showList: !showHome, empty: !showHome && !groups.length, groups,
+      cats: cur ? ['Semua', ...cur.cats.map(c => c[0])].map(name => ({ name, pick: () => this.setState({ cat: name }), bg: s.cat === name ? T.ink : 'transparent', ink: s.cat === name ? T.page : T.ink })) : [],
+      hasCart: cartOn && sel.length > 0, cartTotal: 'Estimasi ' + this.rp(total), cartInfo: sel.length + ' layanan dipilih' + (bs.length > 1 ? ' dari ' + bs.length + ' brand' : ''),
+      cartCta: 'Kirim ke WhatsApp ' + target.name, cartWa: target.wa + '?text=' + encodeURIComponent(msg),
+      clearCart: () => this.setState({ cart: {} })
+    };
+  }
+}
+</script>
+</body>
+</html>
